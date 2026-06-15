@@ -208,14 +208,76 @@
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
-<button id="musicBtn">🎵 Music</button>
+<div id="musicPlayer">
+  <button id="musicBtn">▶</button>
+  <div class="music-info">
+    <span>Background Music</span>
+    <small>Aksh Portfolio</small>
+  </div>
+</div>
 
 <style>
-#musicBtn{
+#musicPlayer{
   position:fixed;
-  bottom:20px;
-  right:20px;
+  bottom:25px;
+  right:25px;
   z-index:9999;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 18px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.15);
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+#musicBtn{
+  width:50px;
+  height:50px;
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:18px;
+  color:white;
+  background:linear-gradient(
+    135deg,
+    rgba(0,255,255,0.3),
+    rgba(128,0,255,0.3)
+  );
+  backdrop-filter:blur(10px);
+}
+
+.music-info{
+  display:flex;
+  flex-direction:column;
+  color:white;
+}
+
+.music-info span{
+  font-size:14px;
+  font-weight:600;
+}
+
+.music-info small{
+  opacity:0.7;
+  font-size:11px;
+}
+
+@media(max-width:768px){
+  #musicPlayer{
+    bottom:15px;
+    right:15px;
+    padding:10px 14px;
+  }
+
+  .music-info{
+    display:none;
+  }
 }
 </style>
 
@@ -224,19 +286,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const music = document.getElementById("bgMusic");
   const btn = document.getElementById("musicBtn");
 
+  music.volume = 0.3;
+
   btn.addEventListener("click", function () {
     if (music.paused) {
       music.play();
-      btn.textContent = "⏸ Pause";
+      btn.innerHTML = "⏸";
     } else {
       music.pause();
-      btn.textContent = "🎵 Music";
+      btn.innerHTML = "▶";
     }
   });
 
   document.addEventListener("click", function startMusic() {
-    music.play().catch(() => {});
-    btn.textContent = "⏸ Pause";
+    music.play().then(() => {
+      btn.innerHTML = "⏸";
+    }).catch(() => {});
   }, { once: true });
 });
 </script>
