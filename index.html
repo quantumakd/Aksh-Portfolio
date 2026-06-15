@@ -291,6 +291,73 @@
   user-select:none;
 }
 
+  #lionMode{
+  position:fixed;
+  left:25px;
+  bottom:25px;
+  width:60px;
+  height:60px;
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:28px;
+  z-index:9999;
+
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px);
+
+  box-shadow:
+  0 0 25px rgba(255,215,0,.3);
+
+  transition:.4s;
+}
+
+#lionMode:hover{
+  transform:scale(1.1);
+}
+
+.golden-theme{
+  --gold:#FFD700;
+  --gold2:#FFB800;
+}
+
+.golden-theme body{
+  background:#0f0b00;
+}
+
+.golden-theme .glass-panel,
+.golden-theme .social-card,
+.golden-theme #musicPlayer{
+  border:1px solid rgba(255,215,0,.4);
+  box-shadow:
+    0 0 25px rgba(255,215,0,.25);
+}
+
+.golden-theme h1,
+.golden-theme h2,
+.golden-theme h3,
+.golden-theme .eyebrow{
+  color:#FFD700 !important;
+}
+
+.golden-theme .button--primary{
+  background:linear-gradient(
+    135deg,
+    #FFD700,
+    #FFB800
+  );
+  color:black;
+}
+
+.golden-theme a{
+  color:#FFD700;
+}
+
+.golden-theme #space{
+  filter:hue-rotate(40deg)
+         saturate(2);
+}
+
 @media(max-width:768px){
   #musicPlayer{
     bottom:15px;
@@ -346,8 +413,27 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("dragstart", function(e){
   e.preventDefault();
 });
+
+  const lionBtn = document.getElementById("lionMode");
+
+if(localStorage.getItem("goldTheme") === "on"){
+  document.documentElement.classList.add("golden-theme");
+}
+
+lionBtn.addEventListener("click", () => {
+  document.documentElement.classList.toggle("golden-theme");
+
+  if(document.documentElement.classList.contains("golden-theme")){
+    localStorage.setItem("goldTheme","on");
+  }else{
+    localStorage.removeItem("goldTheme");
+  }
+});
 </script>    
 
+<button id="lionMode">
+🦁
+</button>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
