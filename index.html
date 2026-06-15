@@ -22,16 +22,6 @@
   </head>
   <body>
 
-<div id="loader">
-  <div class="loader-content">
-    <div class="loader-logo">AKSH</div>
-    <div class="loader-bar">
-      <div class="loader-progress"></div>
-    </div>
-    <p>Loading Portfolio...</p>
-  </div>
-</div>
-
 <canvas id="space"></canvas>
 
     <header class="topbar">
@@ -321,13 +311,6 @@ document.addEventListener("DOMContentLoaded", function () {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.1/three.min.js"></script>
-    <script>
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    document.getElementById("loader").classList.add("hidden");
-  }, 2500);
-});
-</script>
     <script src="script.js"></script>
   </body>
 </html>
