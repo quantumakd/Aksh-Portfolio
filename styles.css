@@ -609,4 +609,61 @@ h2 {
   h2 {
     font-size: 2.35rem;
   }
+
+  /* Loader */
+#loader{
+  position:fixed;
+  inset:0;
+  background:#050816;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+  transition:opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#loader.hidden{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader-content{
+  text-align:center;
+}
+
+.loader-logo{
+  font-size:4rem;
+  font-weight:800;
+  color:white;
+  letter-spacing:8px;
+  margin-bottom:20px;
+  text-shadow:0 0 20px rgba(0,255,255,.8);
+}
+
+.loader-bar{
+  width:260px;
+  height:8px;
+  border-radius:20px;
+  overflow:hidden;
+  background:rgba(255,255,255,.1);
+}
+
+.loader-progress{
+  height:100%;
+  width:0%;
+  border-radius:20px;
+  background:linear-gradient(90deg,#00ffff,#8a2be2);
+  animation:loading 2.5s linear forwards;
+}
+
+.loader-content p{
+  color:white;
+  margin-top:15px;
+  opacity:.8;
+}
+
+@keyframes loading{
+  from{width:0%;}
+  to{width:100%;}
+}
 }
