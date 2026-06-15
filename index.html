@@ -325,7 +325,7 @@
   --gold2:#FFB800;
 }
 
-.golden-theme body{
+body.golden-theme{
   background:#0f0b00;
 }
 
@@ -418,18 +418,18 @@ document.addEventListener("dragstart", function(e){
   e.preventDefault();
 });
 
-  const lionBtn = document.getElementById("lionMode");
+ const lionBtn = document.getElementById("lionMode");
 
 if(localStorage.getItem("goldTheme") === "on"){
-  document.documentElement.classList.add("golden-theme");
+  document.body.classList.add("golden-theme");
 }
 
 lionBtn.addEventListener("click", () => {
-  document.documentElement.classList.toggle("golden-theme");
+  document.body.classList.toggle("golden-theme");
 
-  if(document.documentElement.classList.contains("golden-theme")){
+  if(document.body.classList.contains("golden-theme")){
     localStorage.setItem("goldTheme","on");
-  }else{
+  } else {
     localStorage.removeItem("goldTheme");
   }
 });
