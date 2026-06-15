@@ -26,7 +26,7 @@
 
     <header class="topbar">
       <a class="brand" href="#hero" aria-label="Aksh Prajapati home">
-        <img src="aksh-logo.jpeg" alt="Aksh logo" />
+        <img src="aksh-logo.jpeg" alt="Aksh logo" draggable="false" />
       </a>
       <nav class="nav" aria-label="Primary navigation">
         <a href="#about">About</a>
@@ -47,6 +47,7 @@
                   class="profile-media"
                   src="aksh-logo.jpeg"
                   alt="Aksh Prajapati profile"
+                  draggable="false"
                 />
               </div>
             </div>
@@ -306,6 +307,25 @@ document.addEventListener("DOMContentLoaded", function () {
   }, { once: true });
 });
 </script>
+
+<script>
+/* Disable Right Click */
+document.addEventListener("contextmenu", function(e){
+  e.preventDefault();
+});
+
+/* Prevent Image Dragging */
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("img").forEach(img => {
+    img.setAttribute("draggable", "false");
+  });
+});
+
+/* Optional: Prevent dragging any media */
+document.addEventListener("dragstart", function(e){
+  e.preventDefault();
+});
+</script>    
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
