@@ -374,6 +374,10 @@ body.golden-theme{
   overflow:hidden;
   background:#111;
 }
+
+  body{
+  cursor:auto;
+}
   
 @media(max-width:768px){
   #musicPlayer{
@@ -412,7 +416,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }, { once: true });
 });
 </script>
-
+<div id="cursor"></div>
 <script>
 /* Disable Right Click */
 document.addEventListener("contextmenu", function(e){
