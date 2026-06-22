@@ -374,13 +374,6 @@ body.golden-theme{
   overflow:hidden;
   background:#111;
 }
-  /* Hide default cursor */
-body{
-  cursor:none;
-}
-
-
-}
   
 @media(max-width:768px){
   #musicPlayer{
@@ -453,7 +446,6 @@ lionBtn.addEventListener("click", () => {
     localStorage.removeItem("goldTheme");
   }
 });
-  const cursor = document.getElementById("cursor");
 
 document.addEventListener("mousemove", (e) => {
   cursor.style.left = e.clientX + "px";
