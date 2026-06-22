@@ -379,25 +379,7 @@ body{
   cursor:none;
 }
 
-/* Custom cursor */
-#cursor{
-  position:fixed;
-  width:20px;
-  height:20px;
-  border-radius:50%;
-  background:#fff;
-  pointer-events:none;
-  z-index:99999;
-  transform:translate(-50%,-50%);
-  transition:
-    width .2s,
-    height .2s,
-    transform .08s linear;
 
-  box-shadow:
-    0 0 20px #fff,
-    0 0 40px cyan,
-    0 0 60px cyan;
 }
   
 @media(max-width:768px){
@@ -491,7 +473,7 @@ document.querySelectorAll("a, button").forEach(el => {
 });
 </script>    
 
-<div id="cursor"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
