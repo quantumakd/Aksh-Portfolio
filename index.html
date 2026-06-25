@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+  
   <!-- Welcome Popup -->
 <div id="welcomePopup">
   <div class="popup-box">
@@ -40,7 +41,7 @@
       <button type="submit">Join Now</button>
     </form>
 
-    <button id="skipBtn" disable>Skip</button>
+    <button id="skipBtn" disabled>Skip</button>
   </div>
 </div>
 <div id="watermark">AKSH PRAJAPATI</div>
@@ -219,11 +220,46 @@
             </p>
           </div>
           <div class="contact-actions glass-panel reveal">
-            <a class="button button--primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=aksh42038@gmail.com" target="_blank" rel="noreferrer">Email Aksh</a>
-            <a class="button button--ghost" href="https://www.linkedin.com/search/results/all/?keywords=Quantum%20A.K.D" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a class="button button--ghost" href="https://instagram.com/quantumakd" target="_blank" rel="noreferrer">Instagram</a>
-            <a class="button button--ghost" href="resume.txt" download>Download Resume</a>
-          </div>
+
+<form id="contactForm"
+      action="https://formspree.io/f/xdaraqbe"
+      method="POST">
+
+  <input
+    type="text"
+    name="name"
+    placeholder="Your Name"
+    required
+  >
+
+  <input
+    type="email"
+    name="email"
+    placeholder="Your Email"
+    required
+  >
+
+  <input
+    type="text"
+    name="subject"
+    placeholder="Subject"
+    required
+  >
+
+  <textarea
+    name="message"
+    placeholder="Your Message"
+    rows="5"
+    required
+  ></textarea>
+
+  <button type="submit">
+    Send Message
+  </button>
+
+</form>
+
+</div>
         </div>
       </section>
     </main>
@@ -465,6 +501,35 @@ body.golden-theme{
   color:white;
   border:1px solid rgba(255,255,255,.2);
 }
+  #contactForm{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  width:100%;
+}
+
+#contactForm input,
+#contactForm textarea{
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:rgba(255,255,255,.08);
+  color:white;
+  outline:none;
+}
+
+#contactForm textarea{
+  resize:none;
+}
+
+#contactForm button{
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:600;
+}
+  
 @media(max-width:768px){
   #musicPlayer{
     bottom:15px;
@@ -600,7 +665,31 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("welcomePopup").style.display = "flex";
 });
 </script>  
+<script>
+document.getElementById("contactForm")
+.addEventListener("submit", async function(e){
 
+  e.preventDefault();
+
+  const form = this;
+  const data = new FormData(form);
+
+  const response = await fetch(form.action,{
+    method:"POST",
+    body:data,
+    headers:{
+      Accept:"application/json"
+    }
+  });
+
+  if(response.ok){
+    alert("Message sent successfully!");
+    form.reset();
+  }else{
+    alert("Failed to send message.");
+  }
+});
+</script>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
