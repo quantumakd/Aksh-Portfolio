@@ -397,7 +397,19 @@ body.golden-theme{
   cursor:auto;
 }
 
-?
+#cursor{
+  position:fixed;
+  width:20px;
+  height:20px;
+  border:2px solid #fff;
+  border-radius:50%;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  transition:
+    width .2s ease,
+    height .2s ease;
+  z-index:999999;
+}
   
   #welcomePopup{
   position:fixed;
