@@ -566,11 +566,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    if(response.ok){
-      popup.style.display = "none";
-      localStorage.setItem("popupSeen","true");
-      alert("Thank you for joining!");
-    }
+     if(response.ok){
+  popup.style.display = "none";
+  localStorage.setItem("popupSeen","true");
+  alert("Thank you for joining!");
+} else {
+  alert("Please enter a valid email address.");
+}
   });
 });
 </script>    
