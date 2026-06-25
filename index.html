@@ -24,7 +24,25 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+  <!-- Welcome Popup -->
+<div id="welcomePopup">
+  <div class="popup-box">
+    <h2>Welcome to Being a Part of Aksh Prajapati Portfolio</h2>
+    <p>Enter your email to join the community.</p>
 
+    <form action="https://formspree.io/f/xdaraqbe" method="POST">
+      <input
+        type="email"
+        name="email"
+        placeholder="Enter your email"
+        required
+      >
+      <button type="submit">Join Now</button>
+    </form>
+
+    <button id="skipBtn">Skip</button>
+  </div>
+</div>
 <div id="watermark">AKSH PRAJAPATI</div>
 
 <canvas id="space"></canvas>
@@ -378,7 +396,60 @@ body.golden-theme{
   body{
   cursor:auto;
 }
-  
+  #welcomePopup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(12px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:999999;
+}
+
+.popup-box{
+  width:90%;
+  max-width:450px;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  color:white;
+}
+
+.popup-box h2{
+  margin-bottom:15px;
+}
+
+.popup-box p{
+  margin-bottom:20px;
+  opacity:.8;
+}
+
+.popup-box input{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  margin-bottom:15px;
+  outline:none;
+}
+
+.popup-box button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+#skipBtn{
+  background:transparent;
+  color:white;
+  border:1px solid rgba(255,255,255,.2);
+}
 @media(max-width:768px){
   #musicPlayer{
     bottom:15px;
@@ -461,13 +532,24 @@ document.querySelectorAll("a, button").forEach(el => {
     cursor.style.width = "40px";
     cursor.style.height = "40px";
   });
-
+  
   el.addEventListener("mouseleave", () => {
     cursor.style.width = "20px";
     cursor.style.height = "20px";
   });
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const popup = document.getElementById("welcomePopup");
+  const skipBtn = document.getElementById("skipBtn");
+
+  if (skipBtn && popup) {
+    skipBtn.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+  }
+});
 </script>    
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
