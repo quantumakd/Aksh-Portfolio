@@ -700,6 +700,9 @@ document.getElementById("contactForm")
   }else{
     alert("Failed to send message.");
   }
+  setTimeout(() => {
+  skipBtn.disabled = false;
+}, 5000);
 });
 </script>
 
