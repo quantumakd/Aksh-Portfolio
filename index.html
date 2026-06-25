@@ -545,7 +545,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("#welcomePopup form");
 
   if(localStorage.getItem("popupSeen")){
-    popup.style.display = "flex";
+    popup.style.display = "none";
   }
 
   skipBtn.addEventListener("click", () => {
