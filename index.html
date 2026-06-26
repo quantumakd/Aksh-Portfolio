@@ -540,18 +540,25 @@ body.golden-theme{
   cursor:pointer;
   font-weight:600;
 } 
-footer{
-  width:100%;
-  text-align:center;
-  padding:25px 20px;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-  border-top:1px solid rgba(255,255,255,0.1);
-  color:#fff;
-  font-size:15px;
-  position:relative;
-  z-index:10;
-} 
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+main {
+    min-height: 100vh;
+}
+
+footer {
+    display: block;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    background: rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
   
 @media(max-width:768px){
   #musicPlayer{
