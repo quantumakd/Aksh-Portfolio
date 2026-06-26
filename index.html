@@ -61,9 +61,6 @@
     </header>
 
     <main data-scroll-container>
-        <footer>
-         © 2026 Aksh Prajapati. All Rights Reserved.
-        </footer>
       <section class="hero section" id="hero" data-scroll-section>
         <div class="hero__glow" aria-hidden="true"></div>
         <div class="hero-shell">
@@ -271,6 +268,9 @@
 </div>
         </div>
       </section>
+      <footer>
+       © 2026 Aksh Prajapati. All Rights Reserved.
+      </footer>
     </main>
 
   
@@ -550,14 +550,41 @@ main {
     min-height: 100vh;
 }
 
-footer {
-    display: block;
-    width: 100%;
-    padding: 30px;
-    text-align: center;
-    color: white;
-    background: rgba(255,255,255,0.05);
-    border-top: 1px solid rgba(255,255,255,0.1);
+.footer{
+    width:100%;
+    padding:40px 20px;
+    margin-top:60px;
+    background:rgba(255,255,255,.05);
+    border-top:1px solid rgba(255,255,255,.1);
+    backdrop-filter:blur(12px);
+    text-align:center;
+}
+
+.footer-content{
+    max-width:1200px;
+    margin:auto;
+}
+
+.footer p{
+    color:#fff;
+    margin-bottom:15px;
+}
+
+.footer-links{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.footer-links a{
+    color:#bbb;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.footer-links a:hover{
+    color:#fff;
 }
   
 @media(max-width:768px){
