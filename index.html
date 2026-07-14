@@ -83,10 +83,20 @@
                 <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>
                 <span>@quantumakd</span>
               </a>
-              <span class="social-logo social-logo--disabled" aria-label="Discord coming later">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5c2.8-1.4 6.2-1.4 9 0l1.1 7.1c-1.2.9-2.5 1.5-3.9 1.8l-.7-1.1c.8-.2 1.5-.6 2.1-1.1-2 .9-4.3.9-6.2 0 .6.5 1.3.9 2.1 1.1l-.7 1.1c-1.4-.3-2.7-.9-3.9-1.8l1.1-7.1Z"></path></svg>
-                <span>Discord later</span>
-              </span>
+              <a class="social-logo social-logo--discord"
+   href="https://discord.gg/SPjUeG8uP"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Discord">
+
+  <svg xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 24 24"
+       fill="currentColor">
+    <path d="M20.317 4.369A19.791 19.791 0 0 0 15.885 3c-.191.347-.404.817-.553 1.184a18.27 18.27 0 0 0-5.487 0A12.64 12.64 0 0 0 9.29 3a19.736 19.736 0 0 0-4.433 1.369C2.05 8.533 1.28 12.595 1.664 16.602A19.9 19.9 0 0 0 7.813 20c.5-.684.946-1.404 1.334-2.156-.734-.278-1.434-.623-2.091-1.028.175-.129.346-.263.512-.404 4.036 1.897 8.419 1.897 12.408 0 .167.141.338.275.512.404-.658.405-1.359.75-2.094 1.028.389.752.835 1.472 1.335 2.156a19.86 19.86 0 0 0 6.148-3.398c.451-4.657-.77-8.683-3.56-12.233ZM8.02 14.121c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.095 2.157 2.419 0 1.334-.956 2.419-2.157 2.419Zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.095 2.157 2.419 0 1.334-.946 2.419-2.157 2.419Z"/>
+  </svg>
+
+  <span>Discord</span>
+</a>
               <a class="social-logo social-logo--linkedin" href="https://www.linkedin.com/search/results/all/?keywords=Quantum%20A.K.D" target="_blank" rel="noreferrer" aria-label="LinkedIn Quantum A.K.D">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h3v10H5V9Zm1.5-4a1.7 1.7 0 1 1 0 3.4A1.7 1.7 0 0 1 6.5 5ZM10 9h2.9v1.4c.6-.9 1.7-1.7 3.2-1.7 2.4 0 3.9 1.6 3.9 4.6V19h-3v-5.2c0-1.2-.5-2-1.5-2-.9 0-1.4.6-1.4 2V19h-3V9Z"></path></svg>
                 <span>Quantum A.K.D</span>
@@ -152,10 +162,15 @@
               <span>Instagram</span>
               <small>@quantumakd</small>
             </a>
-            <span class="social-card social-card--disabled reveal">
-              <span>Discord</span>
-              <small>Later</small>
-            </span>
+           <a class="social-card reveal"
+   href="https://discord.gg/SPjUeG8uP"
+   target="_blank"
+   rel="noopener noreferrer">
+
+    <span>Discord</span>
+    <small>Join My Community</small>
+
+</a>
             <a class="social-card reveal" href="https://www.linkedin.com/search/results/all/?keywords=Quantum%20A.K.D" target="_blank" rel="noreferrer">
               <span>LinkedIn</span>
               <small>Quantum A.K.D</small>
@@ -588,7 +603,27 @@ main {
 .footer-links a:hover{
     color:#fff;
 }
-  
+
+.social-logo--discord{
+    background:linear-gradient(135deg,#5865F2,#404EED);
+    color:#fff;
+    transition:.35s;
+}
+
+.social-logo--discord:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 30px rgba(88,101,242,.45);
+}
+
+.social-card[href*="discord.gg"]{
+    background:linear-gradient(135deg,#5865F2,#404EED);
+    color:#fff;
+}
+
+.social-card[href*="discord.gg"]:hover{
+    transform:translateY(-6px);
+    box-shadow:0 0 30px rgba(88,101,242,.45);
+}
 @media(max-width:768px){
   #musicPlayer{
     bottom:15px;
