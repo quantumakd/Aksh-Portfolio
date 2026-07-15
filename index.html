@@ -145,16 +145,19 @@
         <div class="trailer-box reveal">
 
             <video
-                id="portfolioTrailer"
-                controls
-                preload="metadata"
-                poster="thumbnail.jpg"
-                playsinline>
+    id="portfolioTrailer"
+    autoplay
+    muted
+    loop
+    playsinline
+    controls
+    preload="auto"
+    poster="thumbnail.jpg">
 
-                <source src="trailer.mp4" type="video/mp4">
+    <source src="trailer.mp4" type="video/mp4">
 
-                Your browser doesn't support video.
-            </video>
+    Your browser doesn't support video.
+</video>
 
         </div>
 
@@ -655,33 +658,25 @@ main {
 }
 
 .trailer-box{
-    width:100%;
-    max-width:1100px;
-    margin:auto;
-    border-radius:25px;
-    overflow:hidden;
+    width: 75%;
+    max-width: 850px;
+    margin: 40px auto;
+    border-radius: 20px;
+    overflow: hidden;
 
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.15);
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    backdrop-filter: blur(20px);
 
-    backdrop-filter:blur(20px);
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.35);
+    box-shadow: 0 20px 60px rgba(0,0,0,.35);
 }
 
 .trailer-box video{
-
     width:100%;
     display:block;
-    border-radius:25px;
-}
-
-.trailer-box:hover{
-
-    transform:translateY(-8px);
-
-    transition:.4s;
+    aspect-ratio:16/9;
+    object-fit:cover;
+    border-radius:20px;
 }
 @media(max-width:768px){
   #musicPlayer{
@@ -849,15 +844,7 @@ document.getElementById("contactForm")
   const trailer = document.getElementById("portfolioTrailer");
 
 if (trailer) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) {
-        trailer.pause();
-      }
-    });
-  }, { threshold: 0.5 });
-
-  observer.observe(trailer);
+    trailer.play().catch(() => {});
 }
 </script>
 
