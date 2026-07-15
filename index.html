@@ -53,11 +53,12 @@
         <img src="aksh-logo.jpeg" alt="Aksh logo" draggable="false" />
       </a>
       <nav class="nav" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#socials">Socials</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
+    <a href="#about">About</a>
+    <a href="#trailer">Trailer</a>
+    <a href="#socials">Socials</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+</nav>
     </header>
 
     <main data-scroll-container>
@@ -132,6 +133,34 @@
           </aside>
         </div>
       </section>
+      <section id="trailer" class="section" data-scroll-section>
+
+    <div class="section-inner">
+
+        <div class="section-heading reveal">
+            <p class="eyebrow">Portfolio Trailer</p>
+            <h2>Watch My Portfolio Experience</h2>
+        </div>
+
+        <div class="trailer-box reveal">
+
+            <video
+                id="portfolioTrailer"
+                controls
+                preload="metadata"
+                poster="thumbnail.jpg"
+                playsinline>
+
+                <source src="trailer.mp4" type="video/mp4">
+
+                Your browser doesn't support video.
+            </video>
+
+        </div>
+
+    </div>
+
+</section>
 
       <section class="about section" id="about" data-scroll-section>
         <div class="section-inner split">
@@ -624,6 +653,36 @@ main {
     transform:translateY(-6px);
     box-shadow:0 0 30px rgba(88,101,242,.45);
 }
+
+.trailer-box{
+    width:100%;
+    max-width:1100px;
+    margin:auto;
+    border-radius:25px;
+    overflow:hidden;
+
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.35);
+}
+
+.trailer-box video{
+
+    width:100%;
+    display:block;
+    border-radius:25px;
+}
+
+.trailer-box:hover{
+
+    transform:translateY(-8px);
+
+    transition:.4s;
+}
 @media(max-width:768px){
   #musicPlayer{
     bottom:15px;
@@ -786,6 +845,20 @@ document.getElementById("contactForm")
   skipBtn.disabled = false;
 }, 5000);
 });
+
+  const trailer = document.getElementById("portfolioTrailer");
+
+if (trailer) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        trailer.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(trailer);
+}
 </script>
 
 
