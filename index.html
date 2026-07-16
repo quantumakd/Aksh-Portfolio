@@ -264,7 +264,74 @@
         </div>
       </section>
 
-      <section class="contact section" id="contact" data-scroll-section>
+<!-- ================= FEEDBACK SECTION ================= -->
+
+<section id="feedback" class="section" data-scroll-section">
+    <div class="section-inner">
+
+        <div class="section-heading reveal">
+            <p class="eyebrow">Testimonials</p>
+            <h2>What People Say</h2>
+        </div>
+
+        <div class="feedback-slider">
+
+            <div class="feedback-track">
+
+                <!-- Card 1 -->
+                <div class="feedback-card">
+                    <img src="user1.jpg" alt="">
+                    <h3>Shivam</h3>
+                    <span>Frontend Developer</span>
+                    <p>"One of the cleanest portfolio websites I've seen. Smooth animations and premium UI."</p>
+                    <div class="stars">★★★★★</div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="feedback-card">
+                    <img src="user2.jpg" alt="">
+                    <h3>Aman</h3>
+                    <span>UI Designer</span>
+                    <p>"The trailer, effects and glassmorphism make this portfolio feel modern and professional."</p>
+                    <div class="stars">★★★★★</div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="feedback-card">
+                    <img src="user3.jpg" alt="">
+                    <h3>Dynamite007</h3>
+                    <span>Software Engineer</span>
+                    <p>"Excellent attention to detail. Responsive, interactive and visually impressive."</p>
+                    <div class="stars">★★★★★</div>
+                </div>
+
+                <!-- Duplicate cards -->
+                <div class="feedback-card">
+                    <img src="user1.jpg" alt="">
+                    <h3>Dushyant</h3>
+                    <span>Frontend Developer</span>
+                    <p>"One of the cleanest portfolio websites I've seen. Smooth animations and premium UI."</p>
+                    <div class="stars">★★★★★</div>
+                </div>
+
+                <div class="feedback-card">
+                    <img src="user2.jpg" alt="">
+                    <h3>Boywithcut</h3>
+                    <span>UI Designer</span>
+                    <p>"The trailer, effects and glassmorphism make this portfolio feel modern and professional."</p>
+                    <div class="stars">★★★★★</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= CONTACT SECTION ================= -->
+
+<section class="contact section" id="contact" data-scroll-section>
         <div class="section-inner contact-layout">
           <div class="contact-copy reveal">
             <p class="eyebrow">Contact</p>
@@ -677,6 +744,79 @@ main {
     aspect-ratio:16/9;
     object-fit:cover;
     border-radius:20px;
+}
+
+  .feedback-slider{
+    overflow:hidden;
+    margin-top:50px;
+    width:100%;
+}
+
+.feedback-track{
+    display:flex;
+    gap:25px;
+    width:max-content;
+    animation:scrollFeedback 25s linear infinite;
+}
+
+.feedback-slider:hover .feedback-track{
+    animation-play-state:paused;
+}
+
+.feedback-card{
+    width:320px;
+    flex-shrink:0;
+    padding:25px;
+    border-radius:22px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+    transition:.4s;
+}
+
+.feedback-card:hover{
+    transform:translateY(-10px) scale(1.03);
+    box-shadow:0 0 30px rgba(0,255,255,.35);
+}
+
+.feedback-card img{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:15px;
+}
+
+.feedback-card h3{
+    margin:0;
+}
+
+.feedback-card span{
+    opacity:.7;
+    font-size:14px;
+}
+
+.feedback-card p{
+    margin:18px 0;
+    line-height:1.6;
+}
+
+.stars{
+    color:#FFD700;
+    font-size:20px;
+}
+
+@keyframes scrollFeedback{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
+
 }
 @media(max-width:768px){
   #musicPlayer{
