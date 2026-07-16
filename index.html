@@ -837,12 +837,22 @@ main {
 
 /* Animation */
 
-  #feedback,
-.feedback-card,
-.feedback-slider,
+ #feedback{
+    opacity:1;
+    visibility:visible;
+}
+
+.feedback-slider{
+    overflow:hidden;
+}
+
 .feedback-track{
-    opacity:1 !important;
-    visibility:visible !important;
+    display:flex;
+    gap:30px;
+    animation:feedbackScroll 35s linear infinite;
+}
+
+.feedback-card{
     display:block;
 }
 
@@ -898,6 +908,14 @@ main {
     animation-duration:28s;
 }
 
+}
+  #feedback{
+    position:relative;
+    z-index:2;
+}
+  #contact{
+    position:relative;
+    z-index:2;
 }
 @media(max-width:768px){
   #musicPlayer{
