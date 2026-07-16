@@ -24,7 +24,19 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-  
+  <div id="logoTransition">
+
+    <div class="logo-half left">
+        <img src="aksh-logo.jpeg">
+    </div>
+
+    <div class="logo-half right">
+        <img src="aksh-logo.jpeg">
+    </div>
+
+    <div class="energyFlash"></div>
+
+</div>
   <!-- Welcome Popup -->
 <div id="welcomePopup">
   <div class="popup-box">
@@ -791,6 +803,78 @@ main {
     display:block;
 } */ */
 
+  #logoTransition{
+
+position:fixed;
+inset:0;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:#000;
+
+z-index:999999;
+
+pointer-events:none;
+
+opacity:0;
+visibility:hidden;
+
+overflow:hidden;
+
+}
+
+.logo-half{
+
+position:absolute;
+
+width:220px;
+height:220px;
+
+overflow:hidden;
+
+}
+
+.logo-half img{
+
+width:220px;
+height:220px;
+object-fit:cover;
+
+}
+
+.left{
+
+clip-path:polygon(0 0,50% 0,50% 100%,0 100%);
+
+}
+
+.right{
+
+clip-path:polygon(50% 0,100% 0,100% 100%,50% 100%);
+
+}
+
+.energyFlash{
+
+position:absolute;
+
+width:8px;
+height:260px;
+
+background:white;
+
+box-shadow:
+0 0 40px #fff,
+0 0 80px cyan,
+0 0 160px cyan,
+0 0 260px gold;
+
+opacity:0;
+
+}
+
 @keyframes feedbackScroll{
 
     from{
@@ -1100,6 +1184,85 @@ window.addEventListener("load", () => {
     );
 
 });
+  const lion = document.getElementById("lionMode");
+const transition = document.getElementById("logoTransition");
+
+lion.onclick = ()=>{
+
+transition.style.visibility="visible";
+transition.style.opacity=1;
+
+const tl = gsap.timeline({
+
+onComplete(){
+
+transition.style.opacity=0;
+transition.style.visibility="hidden";
+
+document.body.classList.toggle("golden-theme");
+
+}
+
+});
+
+tl.fromTo(".logo-half",
+{
+scale:0,
+rotation:0
+},
+{
+scale:1,
+duration:.6,
+ease:"back.out(1.8)"
+})
+
+.to(".left",{
+
+x:-250,
+duration:.5
+
+})
+
+.to(".right",{
+
+x:250,
+duration:.5
+
+},"<")
+
+.fromTo(".energyFlash",
+{
+opacity:0,
+scaleY:0
+},
+{
+opacity:1,
+scaleY:1,
+duration:.2
+},"<")
+
+.to(".energyFlash",{
+
+width:"300vw",
+height:"300vh",
+
+borderRadius:"50%",
+
+duration:.5,
+
+ease:"power4.out"
+
+})
+
+.to(".energyFlash",{
+
+opacity:0,
+
+duration:.4
+
+});
+
+};
 </script>
 
 
