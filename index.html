@@ -1020,6 +1020,86 @@ document.getElementById("contactForm")
 if (trailer) {
     trailer.play().catch(() => {});
 }
+  function animatePlaceholder(element, texts, speed = 70, delay = 1800) {
+    let textIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function type() {
+        const current = texts[textIndex];
+
+        if (!deleting) {
+            element.setAttribute(
+                "placeholder",
+                current.substring(0, charIndex++)
+            );
+
+            if (charIndex > current.length) {
+                deleting = true;
+                setTimeout(type, delay);
+                return;
+            }
+        } else {
+            element.setAttribute(
+                "placeholder",
+                current.substring(0, charIndex--)
+            );
+
+            if (charIndex < 0) {
+                deleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+        }
+
+        setTimeout(type, deleting ? 35 : speed);
+    }
+
+    type();
+}
+
+window.addEventListener("load", () => {
+
+    animatePlaceholder(
+        document.querySelector('input[name="name"]'),
+        [
+            "Your Name",
+            "What should I call you?",
+            "Enter your full name"
+        ]
+    );
+
+    animatePlaceholder(
+        document.querySelector('input[name="email"]'),
+        [
+            "Your Email",
+            "example@gmail.com",
+            "Where can Aksh contact you?"
+        ]
+    );
+
+    animatePlaceholder(
+        document.querySelector('input[name="subject"]'),
+        [
+            "Project Inquiry",
+            "Collaboration",
+            "Portfolio Feedback",
+            "Freelance Opportunity"
+        ]
+    );
+
+    animatePlaceholder(
+        document.querySelector('textarea[name="message"]'),
+        [
+            "Tell me about your project...",
+            "Write your message...",
+            "How can Aksh help you?",
+            "Let's build something amazing together."
+        ],
+        50,
+        2200
+    );
+
+});
 </script>
 
 
