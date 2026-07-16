@@ -746,17 +746,28 @@ main {
     border-radius:20px;
 }
 
-  .feedback-slider{
-    overflow:hidden;
-    margin-top:50px;
+ /* ===========================
+   FEEDBACK SECTION
+=========================== */
+
+#feedback{
     width:100%;
+    padding:100px 0;
+    overflow:hidden;
+}
+
+.feedback-slider{
+    width:100%;
+    overflow:hidden;
+    position:relative;
+    margin-top:50px;
 }
 
 .feedback-track{
     display:flex;
-    gap:25px;
-    width:max-content;
-    animation:scrollFeedback 25s linear infinite;
+    gap:30px;
+    width:calc(350px * 10);
+    animation:feedbackScroll 35s linear infinite;
 }
 
 .feedback-slider:hover .feedback-track{
@@ -765,57 +776,118 @@ main {
 
 .feedback-card{
     width:320px;
-    flex-shrink:0;
-    padding:25px;
+    min-width:320px;
+    padding:30px;
     border-radius:22px;
+
     background:rgba(255,255,255,.08);
     backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.15);
-    box-shadow:0 20px 40px rgba(0,0,0,.35);
-    transition:.4s;
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.35);
+
+    transition:.4s ease;
 }
 
 .feedback-card:hover{
     transform:translateY(-10px) scale(1.03);
-    box-shadow:0 0 30px rgba(0,255,255,.35);
+
+    box-shadow:
+        0 0 30px rgba(0,255,255,.35),
+        0 15px 40px rgba(0,0,0,.45);
 }
 
 .feedback-card img{
-    width:70px;
-    height:70px;
+    width:75px;
+    height:75px;
     border-radius:50%;
     object-fit:cover;
-    margin-bottom:15px;
+    border:3px solid rgba(255,255,255,.15);
+    margin-bottom:18px;
 }
 
 .feedback-card h3{
     margin:0;
+    font-size:22px;
+    color:#fff;
 }
 
 .feedback-card span{
-    opacity:.7;
+    display:block;
+    margin-top:6px;
+    color:#b8b8b8;
     font-size:14px;
 }
 
 .feedback-card p{
-    margin:18px 0;
-    line-height:1.6;
+    margin:20px 0;
+    line-height:1.7;
+    color:#ddd;
+    font-size:15px;
 }
 
 .stars{
     color:#FFD700;
     font-size:20px;
+    letter-spacing:2px;
 }
 
-@keyframes scrollFeedback{
+/* Animation */
+
+@keyframes feedbackScroll{
 
     from{
         transform:translateX(0);
     }
 
     to{
-        transform:translateX(-50%);
+        transform:translateX(-1750px);
     }
+
+}
+
+/* Fade Edges */
+
+.feedback-slider::before,
+.feedback-slider::after{
+
+    content:"";
+    position:absolute;
+    top:0;
+    width:120px;
+    height:100%;
+    z-index:5;
+    pointer-events:none;
+
+}
+
+.feedback-slider::before{
+    left:0;
+    background:linear-gradient(to right,#050816,transparent);
+}
+
+.feedback-slider::after{
+    right:0;
+    background:linear-gradient(to left,#050816,transparent);
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.feedback-card{
+    width:280px;
+    min-width:280px;
+}
+
+.feedback-track{
+    gap:20px;
+    width:calc(300px * 10);
+    animation-duration:28s;
+}
 
 }
 @media(max-width:768px){
