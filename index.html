@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Share+Tech+Mono&family=JetBrains+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -683,241 +683,6 @@ main {
     border-radius:20px;
 }
 
- /* ===========================
-   FEEDBACK SECTION
-=========================== */
-
-/* #feedback{
-    width:100%;
-    padding:100px 0;
-    overflow:hidden;
-}
-
-.feedback-slider{
-    width:100%;
-    overflow:hidden;
-    position:relative;
-    margin-top:50px;
-}
-
-.feedback-track{
-    display:flex;
-    gap:30px;
-    width:calc(350px * 10);
-    animation:feedbackScroll 35s linear infinite;
-}
-
-.feedback-slider:hover .feedback-track{
-    animation-play-state:paused;
-}
-
-.feedback-card{
-    width:320px;
-    min-width:320px;
-    padding:30px;
-    border-radius:22px;
-
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-
-    border:1px solid rgba(255,255,255,.12);
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,.35);
-
-    transition:.4s ease;
-}
-
-.feedback-card:hover{
-    transform:translateY(-10px) scale(1.03);
-
-    box-shadow:
-        0 0 30px rgba(0,255,255,.35),
-        0 15px 40px rgba(0,0,0,.45);
-}
-
-.feedback-card img{
-    width:75px;
-    height:75px;
-    border-radius:50%;
-    object-fit:cover;
-    border:3px solid rgba(255,255,255,.15);
-    margin-bottom:18px;
-}
-
-.feedback-card h3{
-    margin:0;
-    font-size:22px;
-    color:#fff;
-}
-
-.feedback-card span{
-    display:block;
-    margin-top:6px;
-    color:#b8b8b8;
-    font-size:14px;
-}
-
-.feedback-card p{
-    margin:20px 0;
-    line-height:1.7;
-    color:#ddd;
-    font-size:15px;
-}
-
-.stars{
-    color:#FFD700;
-    font-size:20px;
-    letter-spacing:2px;
-}
-
-/* Animation */
-
- /* #feedback{
-    opacity:1;
-    visibility:visible;
-}
-
-.feedback-slider{
-    overflow:hidden;
-}
-
-.feedback-track{
-    display:flex;
-    gap:30px;
-    animation:feedbackScroll 35s linear infinite;
-}
-
-.feedback-card{
-    display:block;
-} */ */
-
-  #logoTransition{
-
-position:fixed;
-inset:0;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-background:#000;
-
-z-index:999999;
-
-pointer-events:none;
-
-opacity:0;
-visibility:hidden;
-
-overflow:hidden;
-
-}
-
-.logo-half{
-
-position:absolute;
-
-width:220px;
-height:220px;
-
-overflow:hidden;
-
-}
-
-.logo-half img{
-
-width:220px;
-height:220px;
-object-fit:cover;
-
-}
-
-.left{
-
-clip-path:polygon(0 0,50% 0,50% 100%,0 100%);
-
-}
-
-.right{
-
-clip-path:polygon(50% 0,100% 0,100% 100%,50% 100%);
-
-}
-
-.energyFlash{
-
-position:absolute;
-
-width:8px;
-height:260px;
-
-background:white;
-
-box-shadow:
-0 0 40px #fff,
-0 0 80px cyan,
-0 0 160px cyan,
-0 0 260px gold;
-
-opacity:0;
-
-}
-
-@keyframes feedbackScroll{
-
-    from{
-        transform:translateX(0);
-    }
-
-    to{
-        transform:translateX(-1750px);
-    }
-
-}
-
-/* Fade Edges */
-
-.feedback-slider::before,
-.feedback-slider::after{
-
-    content:"";
-    position:absolute;
-    top:0;
-    width:120px;
-    height:100%;
-    z-index:5;
-    pointer-events:none;
-
-}
-
-.feedback-slider::before{
-    left:0;
-    background:linear-gradient(to right,#050816,transparent);
-}
-
-.feedback-slider::after{
-    right:0;
-    background:linear-gradient(to left,#050816,transparent);
-}
-
-/* Mobile */
-
-@media(max-width:768px){
-
-.feedback-card{
-    width:280px;
-    min-width:280px;
-}
-
-.feedback-track{
-    gap:20px;
-    width:calc(300px * 10);
-    animation-duration:28s;
-}
-
-}
   #feedback{
     position:relative;
     z-index:2;
@@ -1261,6 +1026,725 @@ duration:.4
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.1/three.min.js"></script>
     <script src="script.js"></script>
+     
+<!-- =========================================================
+     HACKER MODE — cyberpunk terminal overlay
+========================================================== -->
+
+<!-- Boot sequence -->
+<div id="hackerBoot" class="hacker-boot">
+  <div class="boot-lines" id="bootLines"></div>
+</div>
+
+<!-- Exit sequence -->
+<div id="hackerExit" class="hacker-exit">
+  <div class="exit-lines" id="exitLines"></div>
+</div>
+
+<!-- Main hacker interface -->
+<div id="hackerOverlay" class="hacker-overlay" aria-hidden="true">
+  <canvas id="matrixCanvas"></canvas>
+  <div class="scanlines"></div>
+  <div class="crt-vignette"></div>
+
+  <div class="hacker-topbar">
+    <span class="hacker-clock" id="hackerClock">00:00:00</span>
+    <span class="hacker-title">&gt;&gt;&gt; HACKER MODE ACTIVATED</span>
+    <button class="hacker-exit-btn" id="hackerExitBtn" aria-label="Exit hacker mode">ESC ⏻</button>
+  </div>
+
+  <div class="hacker-grid">
+    <div class="hacker-panel status-panel">
+      <div class="panel-head">// SYSTEM STATUS</div>
+      <div class="status-line">CPU .......... <span class="ok">ONLINE</span></div>
+      <div class="status-line">AI CORE ...... <span class="ok">ACTIVE</span></div>
+      <div class="status-line">NETWORK ...... <span class="ok">SECURE</span></div>
+      <div class="status-line">LOCATION ..... <span class="ok">INDIA</span></div>
+      <div class="status-line">MODE ......... <span class="ok">HACKER</span></div>
+      <div class="status-line">STATUS ....... <span class="ok">ACCESS GRANTED</span></div>
+    </div>
+
+    <div class="hacker-panel explorer-panel">
+      <div class="panel-head">// Portfolio/</div>
+      <div class="file-item" data-target="#about">📂 About</div>
+      <div class="file-item" data-target="#skills">📂 Projects</div>
+      <div class="file-item" data-target="#skills">📂 Skills</div>
+      <div class="file-item" data-target="#contact">📂 Contact</div>
+      <div class="file-item" data-target="#contact">📄 Resume.pdf</div>
+    </div>
+
+    <div class="hacker-panel map-panel">
+      <div class="panel-head">// GLOBAL NETWORK</div>
+      <svg viewBox="0 0 300 150" class="cyber-map" preserveAspectRatio="xMidYMid meet">
+        <path d="M20,90 Q60,40 100,70 T180,60 T280,90" fill="none" stroke="#00ff88" stroke-opacity="0.25" stroke-width="1"/>
+        <line class="map-line" x1="40" y1="100" x2="120" y2="55" />
+        <line class="map-line" x1="120" y1="55" x2="200" y2="80" />
+        <line class="map-line" x1="200" y1="80" x2="260" y2="40" />
+        <line class="map-line" x1="120" y1="55" x2="150" y2="115" />
+        <line class="map-line" x1="150" y1="115" x2="230" y2="120" />
+        <circle class="map-node" cx="40" cy="100" r="3" />
+        <circle class="map-node" cx="120" cy="55" r="4" />
+        <circle class="map-node" cx="200" cy="80" r="3" />
+        <circle class="map-node" cx="260" cy="40" r="3" />
+        <circle class="map-node" cx="150" cy="115" r="3" />
+        <circle class="map-node" cx="230" cy="120" r="3" />
+      </svg>
+    </div>
+
+    <div class="hacker-panel log-panel">
+      <div class="panel-head">// LIVE CONSOLE</div>
+      <div id="liveLog" class="live-log"></div>
+    </div>
+  </div>
+
+  <div class="hacker-console">
+    <div class="console-output" id="consoleOutput"></div>
+    <div class="console-input-line">
+      <span class="prompt">guest@aksh:~$</span>
+      <input type="text" id="consoleInput" autocomplete="off" spellcheck="false" aria-label="Hacker console command input" />
+    </div>
+  </div>
+</div>
+
+<style>
+/* ============ HACKER MODE THEME ============ */
+:root{
+  --hk-green:#00ff88;
+  --hk-green-dim:#0a3d24;
+  --hk-bg:#000000;
+}
+
+#hackerBoot, #hackerExit, #hackerOverlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:2147483000;
+  background:var(--hk-bg);
+  font-family:'JetBrains Mono','Share Tech Mono',monospace;
+  color:var(--hk-green);
+}
+
+#hackerBoot.active, #hackerExit.active, #hackerOverlay.active{
+  display:block;
+}
+
+/* ---- Boot & exit sequences ---- */
+.boot-lines, .exit-lines{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:min(90vw,640px);
+  white-space:pre-wrap;
+  font-size:15px;
+  line-height:1.9;
+  text-shadow:0 0 8px var(--hk-green), 0 0 18px rgba(0,255,136,.6);
+}
+
+.boot-lines .line, .exit-lines .line{
+  opacity:0;
+  animation:hkFadeIn .25s forwards;
+}
+
+@keyframes hkFadeIn{ to{ opacity:1; } }
+
+.boot-cursor{
+  display:inline-block;
+  width:9px;
+  height:16px;
+  background:var(--hk-green);
+  margin-left:4px;
+  animation:hkBlink .9s steps(1) infinite;
+  vertical-align:middle;
+}
+
+@keyframes hkBlink{ 50%{ opacity:0; } }
+
+/* ---- Main overlay ---- */
+#matrixCanvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  opacity:.55;
+}
+
+.scanlines{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(0,255,136,0.04) 0px,
+    rgba(0,255,136,0.04) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  mix-blend-mode:overlay;
+}
+
+.crt-vignette{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.75) 100%);
+}
+
+.hacker-topbar{
+  position:relative;
+  z-index:3;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 24px;
+  border-bottom:1px solid rgba(0,255,136,.3);
+  background:rgba(0,10,5,.5);
+  backdrop-filter:blur(4px);
+}
+
+.hacker-title{
+  font-weight:700;
+  letter-spacing:2px;
+  text-shadow:0 0 10px var(--hk-green);
+  animation:hkTitleFlicker 3s infinite;
+}
+
+@keyframes hkTitleFlicker{
+  0%,92%,100%{ opacity:1; }
+  93%{ opacity:.4; }
+  94%{ opacity:1; }
+  95%{ opacity:.6; }
+  96%{ opacity:1; }
+}
+
+.hacker-clock{
+  font-size:14px;
+  opacity:.85;
+  letter-spacing:1px;
+}
+
+.hacker-exit-btn{
+  background:transparent;
+  border:1px solid var(--hk-green);
+  color:var(--hk-green);
+  font-family:inherit;
+  padding:6px 14px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:12px;
+  letter-spacing:1px;
+  text-shadow:0 0 6px var(--hk-green);
+  box-shadow:0 0 12px rgba(0,255,136,.25) inset;
+  transition:.2s;
+}
+
+.hacker-exit-btn:hover{
+  background:rgba(0,255,136,.12);
+  box-shadow:0 0 18px rgba(0,255,136,.5);
+}
+
+.hacker-grid{
+  position:relative;
+  z-index:3;
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+  gap:16px;
+  padding:20px 24px;
+}
+
+.hacker-panel{
+  background:rgba(0,15,8,.55);
+  border:1px solid rgba(0,255,136,.35);
+  border-radius:10px;
+  padding:14px 16px;
+  box-shadow:0 0 20px rgba(0,255,136,.08), inset 0 0 20px rgba(0,255,136,.04);
+  font-size:12.5px;
+  min-height:150px;
+}
+
+.panel-head{
+  font-weight:700;
+  margin-bottom:10px;
+  opacity:.85;
+  letter-spacing:1px;
+  border-bottom:1px dashed rgba(0,255,136,.3);
+  padding-bottom:6px;
+}
+
+.status-line{ line-height:1.9; }
+.status-line .ok{ color:#7dffb8; text-shadow:0 0 6px #7dffb8; }
+
+.file-item{
+  padding:5px 0;
+  cursor:pointer;
+  transition:.15s;
+}
+.file-item:hover{
+  color:#eafff2;
+  text-shadow:0 0 10px var(--hk-green);
+  transform:translateX(4px);
+}
+
+.cyber-map{ width:100%; height:auto; }
+.map-node{
+  fill:#7dffb8;
+  filter:drop-shadow(0 0 6px #00ff88);
+  animation:hkPulse 2.4s ease-in-out infinite;
+}
+.map-line{
+  stroke:#00ff88;
+  stroke-width:1;
+  stroke-opacity:.5;
+  stroke-dasharray:4 3;
+  animation:hkDash 6s linear infinite;
+}
+@keyframes hkPulse{
+  0%,100%{ r:3; opacity:.8; }
+  50%{ r:5; opacity:1; }
+}
+@keyframes hkDash{
+  to{ stroke-dashoffset:-140; }
+}
+
+.live-log{
+  height:100px;
+  overflow:hidden;
+  line-height:1.7;
+  opacity:.9;
+}
+.live-log div{
+  opacity:0;
+  animation:hkFadeIn .3s forwards;
+}
+.live-log .ts{ opacity:.6; margin-right:6px; }
+
+.hacker-console{
+  position:relative;
+  z-index:3;
+  margin:0 24px 24px;
+  border:1px solid rgba(0,255,136,.35);
+  border-radius:10px;
+  background:rgba(0,10,5,.6);
+  box-shadow:0 0 25px rgba(0,255,136,.1);
+}
+
+.console-output{
+  max-height:26vh;
+  overflow-y:auto;
+  padding:14px 16px 0;
+  font-size:13px;
+  line-height:1.75;
+  white-space:pre-wrap;
+}
+
+.console-output .cmd-echo{ color:#eafff2; }
+.console-output .cmd-error{ color:#ff5f7a; text-shadow:0 0 6px #ff5f7a; }
+
+.console-input-line{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 16px;
+  border-top:1px dashed rgba(0,255,136,.25);
+}
+
+.prompt{ opacity:.85; white-space:nowrap; }
+
+#consoleInput{
+  flex:1;
+  background:transparent;
+  border:none;
+  outline:none;
+  color:var(--hk-green);
+  font-family:inherit;
+  font-size:14px;
+  text-shadow:0 0 6px var(--hk-green);
+}
+
+/* ---- Glitch burst ---- */
+#hackerOverlay.glitching{
+  animation:hkGlitchShake .25s steps(2);
+}
+#hackerOverlay.glitching::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(transparent 48%, rgba(0,255,136,.15) 50%, transparent 52%);
+  mix-blend-mode:screen;
+}
+#hackerOverlay.glitching .hacker-title{
+  text-shadow:2px 0 #ff2bd6, -2px 0 #00e5ff, 0 0 10px var(--hk-green);
+}
+@keyframes hkGlitchShake{
+  0%{ transform:translate(0,0); }
+  25%{ transform:translate(-2px,1px); }
+  50%{ transform:translate(2px,-1px); }
+  75%{ transform:translate(-1px,-1px); }
+  100%{ transform:translate(0,0); }
+}
+
+@media(max-width:900px){
+  .hacker-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+}
+@media(max-width:600px){
+  .hacker-grid{ grid-template-columns:1fr; padding:14px; }
+  .hacker-console{ margin:0 14px 14px; }
+  .hacker-title{ font-size:13px; }
+}
+</style>
+
+<script>
+(function(){
+  const bootEl        = document.getElementById('hackerBoot');
+  const bootLines      = document.getElementById('bootLines');
+  const exitEl         = document.getElementById('hackerExit');
+  const exitLinesEl    = document.getElementById('exitLines');
+  const overlay        = document.getElementById('hackerOverlay');
+  const canvas         = document.getElementById('matrixCanvas');
+  const ctx            = canvas.getContext('2d');
+  const clockEl        = document.getElementById('hackerClock');
+  const consoleOutput  = document.getElementById('consoleOutput');
+  const consoleInput   = document.getElementById('consoleInput');
+  const liveLogEl      = document.getElementById('liveLog');
+  const exitBtn        = document.getElementById('hackerExitBtn');
+  const lion           = document.getElementById('lionMode');
+
+  let isActive = false;
+  let rainInterval = null;
+  let clockInterval = null;
+  let glitchTimeout = null;
+  let liveLogTimeout = null;
+  let audioCtx = null;
+
+  /* ---------------- Sound effects (synthesized, no audio files needed) ---------------- */
+  function getAudioCtx(){
+    if(!audioCtx){
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if(audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
+
+  function beep(freq, duration, type, gainVal, delay){
+    try{
+      const ac = getAudioCtx();
+      const osc = ac.createOscillator();
+      const gain = ac.createGain();
+      osc.type = type || 'square';
+      osc.frequency.value = freq;
+      gain.gain.value = gainVal || 0.04;
+      osc.connect(gain).connect(ac.destination);
+      const start = ac.currentTime + (delay || 0);
+      osc.start(start);
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+      osc.stop(start + duration + 0.02);
+    }catch(e){ /* audio unsupported, fail silently */ }
+  }
+
+  function playKeyClick(){ beep(1200 + Math.random()*400, 0.02, 'square', 0.03); }
+  function playStartup(){
+    beep(120, .5, 'sawtooth', .05);
+    beep(240, .5, 'sawtooth', .04, .15);
+    beep(480, .4, 'sine', .03, .3);
+  }
+  function playAccessGranted(){
+    beep(660, .12, 'square', .05);
+    beep(880, .12, 'square', .05, .12);
+    beep(1320, .22, 'square', .05, .24);
+  }
+  function playGlitchBurst(){ beep(60 + Math.random()*80, .08, 'sawtooth', .03); }
+  function playExitTone(){
+    beep(500, .15, 'sine', .04);
+    beep(300, .15, 'sine', .04, .15);
+    beep(120, .3, 'sine', .04, .3);
+  }
+
+  /* ---------------- Matrix rain ---------------- */
+  const tokens = ['0','1','0','1','0','1','H','T','M','L','C','S','S','J','S','A','I','A','K','S','H','ERROR','ACCESS'];
+  let columns, drops;
+
+  function sizeCanvas(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    columns = Math.floor(canvas.width / 16);
+    drops = new Array(columns).fill(0).map(()=> Math.floor(Math.random() * -40));
+  }
+
+  function drawRain(){
+    ctx.fillStyle = 'rgba(0,0,0,0.08)';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.font = '14px "JetBrains Mono", monospace';
+    for(let i=0;i<columns;i++){
+      const token = tokens[Math.floor(Math.random()*tokens.length)];
+      const x = i*16;
+      const y = drops[i]*16;
+      ctx.fillStyle = Math.random() < 0.06 ? '#eafff2' : 'rgba(0,255,136,0.75)';
+      ctx.fillText(token, x, y);
+      if(y > canvas.height && Math.random() > 0.975){
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  /* ---------------- Clock ---------------- */
+  function tickClock(){
+    const d = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    clockEl.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  }
+
+  /* ---------------- Glitch bursts ---------------- */
+  function scheduleGlitch(){
+    const delay = 3000 + Math.random()*5000;
+    glitchTimeout = setTimeout(()=>{
+      if(!isActive) return;
+      overlay.classList.add('glitching');
+      playGlitchBurst();
+      setTimeout(()=> overlay.classList.remove('glitching'), 220);
+      scheduleGlitch();
+    }, delay);
+  }
+
+  /* ---------------- Live log ---------------- */
+  const logPool = [
+    'Connected',
+    'Fetching Portfolio...',
+    'Rendering UI...',
+    'Security Check Passed',
+    'Welcome User',
+    'Heartbeat OK',
+    'Syncing Modules...',
+    'Encryption Verified'
+  ];
+  function pushLiveLog(){
+    const d = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    const ts = `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    const line = document.createElement('div');
+    line.innerHTML = `<span class="ts">${ts}</span>${logPool[Math.floor(Math.random()*logPool.length)]}`;
+    liveLogEl.appendChild(line);
+    while(liveLogEl.children.length > 6){ liveLogEl.removeChild(liveLogEl.firstChild); }
+    liveLogTimeout = setTimeout(pushLiveLog, 1800 + Math.random()*1400);
+  }
+
+  /* ---------------- Console ---------------- */
+  function printLine(text, cls){
+    const p = document.createElement('div');
+    if(cls) p.className = cls;
+    p.textContent = text;
+    consoleOutput.appendChild(p);
+    consoleOutput.scrollTop = consoleOutput.scrollHeight;
+  }
+
+  const helpText =
+`Available Commands
+
+about       skills      projects
+resume      contact     clear
+whoami      sudo unlock exit`;
+
+  function handleCommand(raw){
+    const cmd = raw.trim().toLowerCase();
+    printLine('guest@aksh:~$ ' + raw, 'cmd-echo');
+    if(cmd === '') return;
+
+    switch(cmd){
+      case 'help':
+        printLine(helpText);
+        break;
+      case 'about':
+        printLine('Aksh Prajapati — developer, creator, and tech enthusiast.\nBuilds futuristic web experiences with HTML, CSS, JS, Java and AI.');
+        break;
+      case 'skills':
+        printLine('HTML · CSS · JavaScript · Java · AI · 3D Rendering · Game Dev');
+        break;
+      case 'projects':
+        printLine('Loading project index... check the Skills and Trailer sections for live work.');
+        break;
+      case 'resume':
+        printLine('Resume.pdf → contact Aksh directly to request the latest copy.');
+        break;
+      case 'contact':
+        printLine('Reach Aksh via Gmail, Discord, or LinkedIn — see the Socials section.');
+        document.getElementById('contact')?.scrollIntoView({behavior:'smooth'});
+        break;
+      case 'clear':
+        consoleOutput.innerHTML = '';
+        break;
+      case 'whoami':
+        printLine('Aksh Prajapati\nDeveloper\nCreator\nFuture Software Engineer');
+        break;
+      case 'sudo unlock':
+        printLine('Access Granted');
+        playAccessGranted();
+        break;
+      case 'exit':
+        exitHackerMode();
+        break;
+      default:
+        printLine(`command not found: ${cmd}  (type "help")`, 'cmd-error');
+    }
+  }
+
+  consoleInput?.addEventListener('keydown', (e)=>{
+    playKeyClick();
+    if(e.key === 'Enter'){
+      const val = consoleInput.value;
+      consoleInput.value = '';
+      handleCommand(val);
+    }
+  });
+
+  document.querySelectorAll('.file-item').forEach(item=>{
+    item.addEventListener('click', ()=>{
+      const target = item.getAttribute('data-target');
+      exitHackerMode(()=> document.querySelector(target)?.scrollIntoView({behavior:'smooth'}));
+    });
+  });
+
+  /* ---------------- Boot sequence ---------------- */
+  const bootSteps = [
+    'Initializing Quantum Kernel...',
+    'Loading AI Modules...',
+    'Decrypting Portfolio...',
+    'Connecting...',
+    'Access Granted ✓'
+  ];
+
+  function runBoot(onDone){
+    bootEl.classList.add('active');
+    bootLines.innerHTML = '';
+    playStartup();
+    let i = 0;
+    function nextLine(){
+      if(i >= bootSteps.length){
+        setTimeout(()=>{
+          bootEl.classList.remove('active');
+          playAccessGranted();
+          onDone();
+        }, 500);
+        return;
+      }
+      const line = document.createElement('div');
+      line.className = 'line';
+      line.textContent = bootSteps[i];
+      bootLines.appendChild(line);
+      if(bootSteps[i].includes('Access Granted')) playAccessGranted();
+      i++;
+      setTimeout(nextLine, 650);
+    }
+    nextLine();
+  }
+
+  /* ---------------- Enter / Exit ---------------- */
+  function startAmbientEffects(){
+    sizeCanvas();
+    rainInterval = setInterval(drawRain, 45);
+    clockInterval = setInterval(tickClock, 1000);
+    tickClock();
+    scheduleGlitch();
+    liveLogEl.innerHTML = '';
+    pushLiveLog();
+    consoleOutput.innerHTML = '';
+    printLine('>>> HACKER MODE ACTIVATED');
+    printLine('Type "help" to see available commands.');
+  }
+
+  function stopAmbientEffects(){
+    clearInterval(rainInterval);
+    clearInterval(clockInterval);
+    clearTimeout(glitchTimeout);
+    clearTimeout(liveLogTimeout);
+  }
+
+  function enterHackerMode(skipBoot){
+    if(isActive) return;
+    isActive = true;
+    document.body.style.overflow = 'hidden';
+
+    if(skipBoot){
+      overlay.classList.add('active');
+      startAmbientEffects();
+      playAccessGranted();
+    }else{
+      runBoot(()=>{
+        overlay.classList.add('active');
+        startAmbientEffects();
+      });
+    }
+  }
+
+  function exitHackerMode(after){
+    if(!isActive) return;
+    isActive = false;
+    overlay.classList.remove('active');
+    stopAmbientEffects();
+
+    exitEl.classList.add('active');
+    exitLinesEl.innerHTML = '';
+    playExitTone();
+    const steps = ['Disconnecting...','Saving Session...','Returning to Standard UI...'];
+    let i = 0;
+    function nextLine(){
+      if(i >= steps.length){
+        setTimeout(()=>{
+          exitEl.classList.remove('active');
+          document.body.style.overflow = '';
+          if(typeof after === 'function') after();
+        }, 400);
+        return;
+      }
+      const line = document.createElement('div');
+      line.className = 'line';
+      line.textContent = steps[i];
+      exitLinesEl.appendChild(line);
+      i++;
+      setTimeout(nextLine, 500);
+    }
+    nextLine();
+  }
+
+  window.addEventListener('resize', ()=>{ if(isActive) sizeCanvas(); });
+
+  /* ---------------- Activation triggers ---------------- */
+  document.addEventListener('keydown', (e)=>{
+    const tag = (e.target.tagName || '').toLowerCase();
+    const typing = tag === 'input' || tag === 'textarea';
+
+    if(e.ctrlKey && e.shiftKey && (e.key === 'H' || e.key === 'h')){
+      e.preventDefault();
+      enterHackerMode(true); // secret instant mode
+      return;
+    }
+
+    if(!typing && (e.key === 'h' || e.key === 'H') && !isActive){
+      enterHackerMode(false);
+      return;
+    }
+
+    if(e.key === 'Escape' && isActive){
+      exitHackerMode();
+    }
+  });
+
+  exitBtn?.addEventListener('click', ()=> exitHackerMode());
+
+  // Five clicks on the lion icon also activates Hacker Mode
+  let lionClicks = 0;
+  let lionClickTimer = null;
+  lion?.addEventListener('click', ()=>{
+    lionClicks++;
+    clearTimeout(lionClickTimer);
+    lionClickTimer = setTimeout(()=>{ lionClicks = 0; }, 1500);
+    if(lionClicks >= 5){
+      lionClicks = 0;
+      enterHackerMode(false);
+    }
+  });
+})();
+</script>
      
   </body>
 </html>
