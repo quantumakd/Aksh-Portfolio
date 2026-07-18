@@ -21,13 +21,48 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Fallback base styling since styles.css is not part of this preview bundle */
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: #05070a;
+        color: #f4f6f8;
+        font-family: 'Inter', sans-serif;
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 32px;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(5,7,10,0.7);
+        backdrop-filter: blur(12px);
+      }
+      .brand img { height: 40px; border-radius: 50%; }
+      .nav { display: flex; gap: 22px; }
+      .nav a { color: #e5e7eb; text-decoration: none; font-weight: 500; }
+      .hero { min-height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 60px 20px; }
+      .hero-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.2rem, 6vw, 4rem); margin: 10px 0; }
+      .hero-subtitle { opacity: .8; }
+      .section { padding: 60px 20px; }
+      .section-inner { max-width: 1100px; margin: 0 auto; }
+      .glass-panel { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 18px; padding: 24px; backdrop-filter: blur(14px); }
+      .skill-grid, .social-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 16px; margin-top: 20px; }
+      .skill-card, .social-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 14px; padding: 18px; text-decoration: none; color: inherit; }
+      .button { display: inline-block; padding: 12px 22px; border-radius: 999px; text-decoration: none; font-weight: 600; margin: 4px; }
+      .button--primary { background: linear-gradient(135deg,#00e5ff,#7c4dff); color: #04040a; }
+      .button--ghost { border: 1px solid rgba(255,255,255,.3); color: #fff; }
+      .eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: .75rem; opacity: .7; }
+      footer { text-align: center; padding: 30px; opacity: .6; }
+      #hackerBoot, #hackerExit { display:none; }
+    </style>
   </head>
   <body>
-  
 
-</div>
-  <!-- Welcome Popup -->
+<!-- Welcome Popup -->
 <div id="welcomePopup">
   <div class="popup-box">
     <h2>Welcome To Aksh Prajapati Portfolio</h2>
@@ -51,8 +86,8 @@
 <canvas id="space"></canvas>
 
     <header class="topbar">
-      <a class="brand" href="#hero" aria-label="Aksh Prajapati home">
-        <img src="aksh-logo.jpeg" alt="Aksh logo" draggable="false" />
+      <a class="brand" id="logoTap" href="#hero" aria-label="Aksh Prajapati home">
+        <img src="aksh-logo.jpeg" alt="Aksh logo" draggable="false" onerror="this.style.display='none'" />
       </a>
       <nav class="nav" aria-label="Primary navigation">
     <a href="#about">About</a>
@@ -75,6 +110,7 @@
                   src="aksh-logo.jpeg"
                   alt="Aksh Prajapati profile"
                   draggable="false"
+                  onerror="this.style.display='none'"
                 />
               </div>
             </div>
@@ -342,7 +378,7 @@
 </div>
 
 <button id="lionMode">
-  <img src="lion-logo.jpeg" alt="Lion Mode">
+  <img src="lion-logo.jpeg" alt="Lion Mode" onerror="this.style.display='none'">
 </button>
     
 <style>
@@ -497,21 +533,7 @@ body.golden-theme{
   cursor:auto;
 }
 
-/* #cursor{
-  position:fixed;
-  width:20px;
-  height:20px;
-  border:2px solid #fff;
-  border-radius:50%;
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  transition:
-    width .2s ease,
-    height .2s ease;
-  z-index:999999;
-} */
-  
-  #welcomePopup{
+#welcomePopup{
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.85);
@@ -728,7 +750,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }, { once: true });
 });
 </script>
-<div id="cursor"></div>
 <script>
 /* Disable Right Click */
 document.addEventListener("contextmenu", function(e){
@@ -763,22 +784,9 @@ lionBtn.addEventListener("click", () => {
   }
 });
 
-// const cursor = document.getElementById("cursor");
-document.addEventListener("mousemove", (e) => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
-});
-
 document.querySelectorAll("a, button").forEach(el => {
-  el.addEventListener("mouseenter", () => {
-    cursor.style.width = "40px";
-    cursor.style.height = "40px";
-  });
-  
-  el.addEventListener("mouseleave", () => {
-    cursor.style.width = "20px";
-    cursor.style.height = "20px";
-  });
+  el.addEventListener("mouseenter", () => {});
+  el.addEventListener("mouseleave", () => {});
 });
 document.addEventListener("DOMContentLoaded", () => {
   const popup = document.getElementById("welcomePopup");
@@ -939,93 +947,10 @@ window.addEventListener("load", () => {
     );
 
 });
-  const lion = document.getElementById("lionMode");
-const transition = document.getElementById("logoTransition");
-
-lion.onclick = ()=>{
-
-transition.style.visibility="visible";
-transition.style.opacity=1;
-
-const tl = gsap.timeline({
-
-onComplete(){
-
-transition.style.opacity=0;
-transition.style.visibility="hidden";
-
-document.body.classList.toggle("golden-theme");
-
-}
-
-});
-
-tl.fromTo(".logo-half",
-{
-scale:0,
-rotation:0
-},
-{
-scale:1,
-duration:.6,
-ease:"back.out(1.8)"
-})
-
-.to(".left",{
-
-x:-250,
-duration:.5
-
-})
-
-.to(".right",{
-
-x:250,
-duration:.5
-
-},"<")
-
-.fromTo(".energyFlash",
-{
-opacity:0,
-scaleY:0
-},
-{
-opacity:1,
-scaleY:1,
-duration:.2
-},"<")
-
-.to(".energyFlash",{
-
-width:"300vw",
-height:"300vh",
-
-borderRadius:"50%",
-
-duration:.5,
-
-ease:"power4.out"
-
-})
-
-.to(".energyFlash",{
-
-opacity:0,
-
-duration:.4
-
-});
-
-};
 </script>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.1/three.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
      
 <!-- =========================================================
      HACKER MODE — cyberpunk terminal overlay
@@ -1147,18 +1072,6 @@ duration:.4
 }
 
 @keyframes hkFadeIn{ to{ opacity:1; } }
-
-.boot-cursor{
-  display:inline-block;
-  width:9px;
-  height:16px;
-  background:var(--hk-green);
-  margin-left:4px;
-  animation:hkBlink .9s steps(1) infinite;
-  vertical-align:middle;
-}
-
-@keyframes hkBlink{ 50%{ opacity:0; } }
 
 /* ---- Main overlay ---- */
 #matrixCanvas{
@@ -1409,6 +1322,7 @@ duration:.4
   const liveLogEl      = document.getElementById('liveLog');
   const exitBtn        = document.getElementById('hackerExitBtn');
   const lion           = document.getElementById('lionMode');
+  const logoTap        = document.getElementById('logoTap');
 
   let isActive = false;
   let rainInterval = null;
@@ -1740,6 +1654,22 @@ whoami      sudo unlock exit`;
     lionClickTimer = setTimeout(()=>{ lionClicks = 0; }, 1500);
     if(lionClicks >= 5){
       lionClicks = 0;
+      enterHackerMode(false);
+    }
+  });
+
+  // Five taps on the header logo within 2 seconds also activates Hacker Mode (mobile-friendly)
+  let logoTapCount = 0;
+  let logoTapTimer = null;
+  logoTap?.addEventListener('click', function(e){
+    logoTapCount++;
+    clearTimeout(logoTapTimer);
+    logoTapTimer = setTimeout(()=>{ logoTapCount = 0; }, 2000);
+
+    if(logoTapCount >= 5){
+      logoTapCount = 0;
+      clearTimeout(logoTapTimer);
+      e.preventDefault();
       enterHackerMode(false);
     }
   });
