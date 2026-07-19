@@ -1392,7 +1392,13 @@ window.addEventListener("load", () => {
     'Welcome User',
     'Heartbeat OK',
     'Syncing Modules...',
-    'Encryption Verified'
+    'Encryption Verified',
+    'Tip: Use unique passwords per site',
+    'Tip: Enable 2FA wherever possible',
+    'Tip: Verify links before clicking',
+    'Tip: Back up data — 3-2-1 rule',
+    'Tip: Avoid public Wi-Fi for logins',
+    'Tip: Keep software up to date'
   ];
   function pushLiveLog(){
     const d = new Date();
@@ -1419,7 +1425,9 @@ window.addEventListener("load", () => {
 
 about       skills      projects
 resume      contact     clear
-whoami      sudo unlock exit`;
+whoami      sudo unlock exit
+security    password    phishing
+backup      vpn`;
 
   function handleCommand(raw){
     const cmd = raw.trim().toLowerCase();
@@ -1455,6 +1463,59 @@ whoami      sudo unlock exit`;
       case 'sudo unlock':
         printLine('Access Granted');
         playAccessGranted();
+        break;
+      case 'security':
+        printLine(
+`// CYBER-DEFENSE 101
+1. Keep OS & apps updated — patches close known holes.
+2. Use a password manager + unique passwords per site.
+3. Enable 2FA (authenticator app > SMS).
+4. Don't click links in unexpected emails/DMs — verify the sender.
+5. Use a firewall and reputable antivirus/EDR.
+6. Back up important data (3-2-1 rule: 3 copies, 2 media types, 1 offsite).
+7. Lock down social media privacy settings.
+8. Avoid public Wi-Fi for sensitive logins — use a VPN if you must.
+
+Type "password", "phishing", "backup" or "vpn" for a deeper dive.`
+        );
+        break;
+      case 'password':
+        printLine(
+`// PASSWORD HYGIENE
+- 12+ characters, mix of words+numbers+symbols (passphrases work great).
+- Never reuse passwords across sites.
+- Use a password manager (Bitwarden, 1Password, etc.) to generate/store them.
+- Enable 2FA everywhere it's offered.
+- Rotate passwords immediately if a service you use reports a breach.`
+        );
+        break;
+      case 'phishing':
+        printLine(
+`// SPOTTING PHISHING
+- Check the sender's actual email address, not just the display name.
+- Hover links before clicking — does the URL match the real domain?
+- Urgency/fear ("act now or your account is suspended") is a red flag.
+- Legit companies rarely ask for passwords or OTPs via email/chat.
+- When in doubt, go to the site directly instead of clicking the link.`
+        );
+        break;
+      case 'backup':
+        printLine(
+`// BACKUP STRATEGY (3-2-1 RULE)
+- 3 copies of important data
+- 2 different storage types (e.g. local drive + cloud)
+- 1 copy stored offsite/offline (protects against ransomware too)
+- Automate backups so you don't forget — test restores periodically.`
+        );
+        break;
+      case 'vpn':
+        printLine(
+`// VPN & PUBLIC WI-FI
+- Public Wi-Fi (cafes, airports) can be sniffed by others on the network.
+- A reputable VPN encrypts your traffic end-to-end.
+- Still avoid entering banking passwords on unfamiliar/public networks.
+- Always check for HTTPS (padlock icon) on any site handling sensitive data.`
+        );
         break;
       case 'exit':
         exitHackerMode();
