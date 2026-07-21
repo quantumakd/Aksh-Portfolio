@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aksh-portfolio-akd.vercel.app/sitemap.xml
