@@ -606,39 +606,75 @@ main {
     position:relative;
     z-index:2;
     width:100%;
-    padding:40px 20px;
+    padding:56px 20px 44px;
     margin-top:60px;
-    background:rgba(255,255,255,.05);
-    border-top:1px solid rgba(255,255,255,.1);
-    backdrop-filter:blur(12px);
     text-align:center;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(53,199,255,.10), transparent 60%),
+        rgba(8,17,30,.55);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    overflow:hidden;
+}
+
+.footer::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:min(560px, 80%);
+    height:2px;
+    background:linear-gradient(90deg, transparent, #75f4ff, #7cffb2, transparent);
+    box-shadow:0 0 20px rgba(117,244,255,.65), 0 0 40px rgba(124,255,178,.35);
 }
 
 .footer-content{
+    position:relative;
     max-width:1200px;
     margin:auto;
 }
 
 .footer p{
-    color:#fff;
-    margin-bottom:15px;
+    margin:0 0 22px;
+    font-family:"Space Grotesk", sans-serif;
+    font-size:1.05rem;
+    font-weight:700;
+    letter-spacing:.02em;
+    background:linear-gradient(135deg, #75f4ff, #7cffb2);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 30px rgba(53,199,255,.25);
 }
 
 .footer-links{
     display:flex;
     justify-content:center;
-    gap:25px;
+    gap:14px;
     flex-wrap:wrap;
 }
 
 .footer-links a{
-    color:#bbb;
+    display:inline-flex;
+    align-items:center;
+    border:1px solid rgba(117,244,255,.28);
+    border-radius:999px;
+    padding:9px 18px;
+    color:#bbe9f7;
+    background:rgba(117,244,255,.06);
+    font-size:.85rem;
+    font-weight:700;
     text-decoration:none;
-    transition:.3s;
+    transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease, background .25s ease;
 }
 
 .footer-links a:hover{
     color:#fff;
+    transform:translateY(-3px);
+    border-color:rgba(117,244,255,.75);
+    background:rgba(117,244,255,.12);
+    box-shadow:0 10px 30px rgba(53,199,255,.28), 0 0 18px rgba(124,255,178,.22);
 }
 
 .social-logo--discord{
