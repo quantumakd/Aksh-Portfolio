@@ -7,6 +7,13 @@
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="icon" href="favicon.png" sizes="32x32">
     <link rel="apple-touch-icon" href="favicon.png">
+    <!-- PWA: manifest + theme + iOS install meta tags -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#0f0f0f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Aksh Portfolio" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
     <meta
       name="description"
       content="Premium futuristic personal portfolio website for Aksh Prajapati, developer, creator, and tech enthusiast."
@@ -1698,6 +1705,18 @@ Type "password", "phishing", "backup" or "vpn" for a deeper dive.`
   });
 })();
 </script>
-     
+
+<!-- PWA: register the service worker -->
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("sw.js")
+        .then((reg) => console.log("Service worker registered:", reg.scope))
+        .catch((err) => console.warn("Service worker registration failed:", err));
+    });
+  }
+</script>
+
   </body>
 </html>
